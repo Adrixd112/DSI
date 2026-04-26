@@ -1,0 +1,6 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="BarraVida" src="project://database/Assets/BarraVida.uxml?fileID=9197481963319205126&amp;guid=c4af4a61dc11f2748a2a2934317e4228&amp;type=3#BarraVida" />
+    <ui:Template name="ContenedorTemplate" src="project://database/Assets/ContenedorTemplate.uxml?fileID=9197481963319205126&amp;guid=11a15aea303eea448bdb107abf183497&amp;type=3#ContenedorTemplate" />
+    <ui:Instance template="BarraVida" />
+    <ui:Instance template="ContenedorTemplate" style="flex-grow: 1;" />
+</ui:UXML>
