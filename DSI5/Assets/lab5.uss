@@ -1,0 +1,8 @@
+:root {
+}
+
+.unity-label {
+    width: auto;
+    height: auto;
+    min-width: 0%;
+}
