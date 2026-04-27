@@ -2,6 +2,7 @@ Hecho usando Unity 6000.4.4f1
 
 Estoy usando la última versión de unity ya que es la más nueva y hay funciones que Unity va dando de baja en favor de hacer las cosas de una nueva manera.
 
-Aquí no me deja crear custom controls de la manera que sale es las diapos, pero considero que me será mejor aprender a hacerlo de una manera que sirva en el futuro.
+Cambios respecto a la práctica en la versión anterior:
 
-Si no se puede entregar hecho así para la asignatura de dsi, dímelo por favor.
+Lab4: 
+    Custom Controls: para hacer que la clase sea un custom contol, le pongo el atributo [UxmlElement] a la clase que quiero que lo sea y la hago una clase parcial. Para que salgan las variables en el ui builder, le pongo el atributo [UxmlAttribute] a los setters de las variables. En este caso, [UxmlAttribute("Hp")] public int Hp{get => hp;set{};}, le digo que el nombre que quiero que tenga en el editor es Hp. El valor por defecto se lo pongo a la variable que guarda internamente la hp.
