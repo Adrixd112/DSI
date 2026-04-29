@@ -40,26 +40,26 @@ namespace Lab5b_namespace
         }
 
         
-         private Sprite foto;
+         private StyleBackground imagenFondo;
 
-        public Sprite Foto
+        public StyleBackground ImagenFondo
         {
-            get { return foto; }
+            get { return imagenFondo; }
             set
             {
-                if (value != foto)
+                if (value != imagenFondo)
                 {
-                    foto = value;
+                    imagenFondo = value;
                     Cambio?.Invoke();
                 }
             }
         }
 
-        public Individuo(string nombre, string apellido, Sprite foto)
+        public Individuo(string nombre, string apellido, StyleBackground imagenFondo)
         {
             this.nombre = nombre;
             this.apellido = apellido;
-            this.foto = foto;
+            this.imagenFondo = imagenFondo;
         }
     }
 }

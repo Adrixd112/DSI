@@ -10,7 +10,6 @@ public class Lab5 : MonoBehaviour
 
     TextField input_nombre;
     TextField input_apellido;
-
     
     private void OnEnable()
     {
@@ -21,7 +20,6 @@ public class Lab5 : MonoBehaviour
         input_apellido = root.Q<TextField>("InputApellido");
 
         VisualElement izq = root.Q<VisualElement>("Izda"); //para debug es más fácil no hacer todos los Q<>() en la misma línea
-
         List <VisualElement> imgs = izq.Q<VisualElement>("header").Children().ToList();
 
         foreach (VisualElement img in imgs) { img.RegisterCallback<ClickEvent>(CambioImg); }
@@ -32,10 +30,8 @@ public class Lab5 : MonoBehaviour
 
     void CambioImg(ClickEvent evt)
     {
-        Debug.Log("CambioImg" + (evt.currentTarget as VisualElement).name);
-        Debug.Log((evt.currentTarget as VisualElement).resolvedStyle.backgroundImage.sprite);
         VisualElement imgACambiar = plantilla.Q<VisualElement>("top");
-        imgACambiar.style.backgroundImage = new StyleBackground((evt.currentTarget as VisualElement).resolvedStyle.backgroundImage.texture);
+        imgACambiar.style.backgroundImage = new StyleBackground((evt.currentTarget as VisualElement).resolvedStyle.backgroundImage);
     }
     void SeleccionIndividuo(ClickEvent evt)
     {

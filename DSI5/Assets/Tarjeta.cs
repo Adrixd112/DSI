@@ -9,7 +9,6 @@ namespace Lab5b_namespace
     {
         Individuo miIndividuo;
 
-        VisualElement tarjetaRoot;
 
         Label nombreLabel;
 
@@ -19,7 +18,6 @@ namespace Lab5b_namespace
 
         public Tarjeta(VisualElement tarjetaRoot, Individuo individuo)
         {
-            this.tarjetaRoot = tarjetaRoot;
             this.miIndividuo = individuo;
 
             nombreLabel = tarjetaRoot.Q<Label>("Nombre");
@@ -30,18 +28,18 @@ namespace Lab5b_namespace
             tarjetaRoot
                 .Query(className: "tarjeta")
                 .Descendents<VisualElement>()
-                .ForEach(elem=>elem.pickingMode = PickingMode.Ignore);
+                .ForEach(elem => elem.pickingMode = PickingMode.Ignore);
 
             UpdateUI();
 
             miIndividuo.Cambio += UpdateUI;
 
         }
-         void UpdateUI()
+        void UpdateUI()
         {
-        nombreLabel.text = miIndividuo.Nombre;
-        apellidoLabel.text = miIndividuo.Apellido;  
-        imagen.style.backgroundImage = new StyleBackground(miIndividuo.Foto);
+            nombreLabel.text = miIndividuo.Nombre;
+            apellidoLabel.text = miIndividuo.Apellido;
+            imagen.style.backgroundImage = miIndividuo.ImagenFondo;
 
         }
     }
