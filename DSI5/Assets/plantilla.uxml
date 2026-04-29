@@ -1,12 +1,12 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="plantilla" style="flex-grow: 1; width: 33%; aspect-ratio: auto; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 3px; padding-right: 3px; padding-bottom: 3px; padding-left: 3px;">
+    <ui:VisualElement name="plantilla" style="flex-grow: 1; width: auto; aspect-ratio: auto; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 3px; padding-right: 3px; padding-bottom: 3px; padding-left: 3px;">
         <ui:VisualElement name="cuadroInterior" style="flex-grow: 1; background-color: rgb(156, 255, 114); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
-            <ui:VisualElement name="top" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Captura%20de%20pantalla%202026-03-17%20181503.png?fileID=2800000&amp;guid=5708a0c1d7a543b4eb2b923ed282ddcb&amp;type=3#Captura de pantalla 2026-03-17 181503&quot;); height: 33%; max-height: 33%; min-height: 33%;"/>
-            <ui:VisualElement name="bottom" style="flex-grow: 1;">
-                <ui:Label text="Label" name="Apellido" style="-unity-text-align: upper-center;"/>
-            </ui:VisualElement>
+            <ui:VisualElement name="top" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Captura%20de%20pantalla%202026-03-17%20181503.png?fileID=2800000&amp;guid=5708a0c1d7a543b4eb2b923ed282ddcb&amp;type=3#Captura de pantalla 2026-03-17 181503&quot;); height: 33%; max-height: none; min-height: auto; aspect-ratio: auto; width: auto;"/>
             <ui:VisualElement name="mid" style="flex-grow: 1;">
                 <ui:Label text="Label" name="Nombre" style="-unity-text-align: upper-center;"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="bottom" style="flex-grow: 1;">
+                <ui:Label text="Label" name="Apellido" style="-unity-text-align: upper-center;"/>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
