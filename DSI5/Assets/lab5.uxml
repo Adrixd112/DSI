@@ -9,10 +9,10 @@
                 <ui:VisualElement style="flex-grow: 1; background-image: resource(&quot;Corazoncito1&quot;);"/>
             </ui:VisualElement>
             <ui:VisualElement name="body" style="flex-grow: 1;">
-                <ui:TextField label="Apellido" placeholder-text="filler text" name="InputNombre"/>
+                <ui:TextField label="Nombre" placeholder-text="Aquí va un sustantivo" name="InputNombre"/>
             </ui:VisualElement>
             <ui:VisualElement name="footer" style="flex-grow: 1;">
-                <ui:TextField label="Nombre" placeholder-text="filler text" name="InputApellido"/>
+                <ui:TextField label="Apellido" placeholder-text="Aquí va una casa" name="InputApellido"/>
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="Dcha" style="flex-grow: 1; width: auto; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; flex-wrap: wrap; flex-direction: row; align-items: flex-start; align-self: auto; justify-content: flex-start; align-content: auto; height: auto;">
