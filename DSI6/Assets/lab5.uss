@@ -1,0 +1,25 @@
+:root {
+}
+
+.unity-label {
+    width: auto;
+    height: auto;
+    min-width: 0%;
+}
+
+.tarjeta {
+    flex-grow: 1;
+    aspect-ratio: 0.6666667;
+    height: auto;
+    max-height: none;
+    width: 25%;
+    min-width: auto;
+    max-width: 25%;
+    min-height: auto;
+    justify-content: flex-start;
+    align-self: auto;
+    align-items: stretch;
+    flex-basis: auto;
+    align-content: flex-start;
+    flex-direction: column;
+}
