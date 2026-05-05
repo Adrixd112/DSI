@@ -1,12 +1,11 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="plantilla" src="project://database/Assets/plantilla.uxml?fileID=9197481963319205126&amp;guid=529bc8df1efc996498911a270dc94b6a&amp;type=3#plantilla"/>
     <Style src="project://database/Assets/lab5.uss?fileID=7433441132597879392&amp;guid=f235a561883e9ec41b65e58c74a9cacd&amp;type=3#lab5"/>
     <ui:VisualElement name="contenedor" style="flex-grow: 1; flex-direction: row;">
         <ui:VisualElement name="Izda" style="flex-grow: 1; background-color: rgb(233, 215, 50); border-top-width: 4px; border-right-width: 4px; border-bottom-width: 4px; border-left-width: 4px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); width: 33%; max-width: 33%; padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px; min-width: 33%;">
             <ui:VisualElement name="header" style="flex-grow: 1; flex-direction: row; width: auto; height: 33%; max-height: 33%; min-height: 33%;">
-                <ui:VisualElement name="RicardoGira" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Resources/rickRueda.png?fileID=2800000&amp;guid=5708a0c1d7a543b4eb2b923ed282ddcb&amp;type=3#rickRueda&quot;); margin-top: 2px; margin-right: 2px; margin-bottom: 2px; margin-left: 2px; min-width: 0%;"/>
-                <ui:VisualElement name="Estrella" style="flex-grow: 1; background-image: resource(&quot;Star-chafa1&quot;); margin-top: 2px; margin-right: 2px; margin-bottom: 2px; margin-left: 2px;"/>
-                <ui:VisualElement style="flex-grow: 1; background-image: resource(&quot;Corazoncito1&quot;);"/>
+                <ui:VisualElement name="RicardoGira" class="imgBackgroundSelect" style="background-image: resource(&quot;rickRueda#Captura de pantalla 2026-03-17 181503_0&quot;);"/>
+                <ui:VisualElement name="Estrella" class="imgBackgroundSelect" style="flex-grow: 1; background-image: resource(&quot;Star-chafa1&quot;); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px;"/>
+                <ui:VisualElement name="Corazon" class="imgBackgroundSelect" style="flex-grow: 1; background-image: resource(&quot;Corazoncito1&quot;); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px;"/>
             </ui:VisualElement>
             <ui:VisualElement name="body" style="flex-grow: 1;">
                 <ui:TextField label="Nombre" placeholder-text="Aquí va un sustantivo" name="InputNombre"/>
@@ -17,12 +16,9 @@
             <ui:VisualElement name="footer" style="flex-grow: 1; justify-content: space-around; align-self: center;">
                 <ui:Toggle label="Modificar" name="ToggleModificar" style="justify-content: flex-start; align-content: flex-start; align-items: stretch;"/>
                 <ui:Button text="Crear Tarjeta" name="BotonCrear"/>
+                <ui:Button text="Guardar" name="ButtonGuardar"/>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="Dcha" style="flex-grow: 1; width: auto; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; flex-wrap: wrap; flex-direction: row; align-items: flex-start; align-self: auto; justify-content: flex-start; align-content: auto; height: auto;">
-            <ui:Instance template="plantilla" class="tarjeta"/>
-            <ui:Instance template="plantilla" class="tarjeta"/>
-            <ui:Instance template="plantilla" class="tarjeta"/>
-        </ui:VisualElement>
+        <ui:VisualElement name="Dcha" style="flex-grow: 1; width: auto; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; flex-wrap: wrap; flex-direction: row; align-items: flex-start; align-self: auto; justify-content: flex-start; align-content: auto; height: auto;"/>
     </ui:VisualElement>
 </ui:UXML>

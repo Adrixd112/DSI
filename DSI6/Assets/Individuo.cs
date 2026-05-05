@@ -1,16 +1,17 @@
 using UnityEngine;
 using System;
 using UnityEngine.UIElements;
+using static UnityEngine.Rendering.DebugUI;
 
 
-namespace Lab5b_namespace
+namespace Lab6_namespace
 {
-    
+    [Serializable]
     public class Individuo
     {
         public event Action Cambio; 
 
-        private string nombre;
+        [SerializeField]private string nombre;
 
         public string Nombre
         {
@@ -25,7 +26,7 @@ namespace Lab5b_namespace
             }
         }
 
-        private string apellido;
+        [SerializeField] private string apellido;
         public string Apellido
         {
             get{return apellido;}
@@ -39,27 +40,33 @@ namespace Lab5b_namespace
             }
         }
 
-        
-         private StyleBackground imagenFondo;
+        [SerializeField]private string imgVeName;
+      
+        public string ImageVeName { get { return imgVeName; } }
+
+        private StyleBackground imagenFondo;
 
         public StyleBackground ImagenFondo
         {
             get { return imagenFondo; }
-            set
+        }
+        public void CambioImagenFondo(VisualElement veConImgFondo)
+        {
+
+            if (veConImgFondo.name != imgVeName || imagenFondo == null)
             {
-                if (value != imagenFondo)
-                {
-                    imagenFondo = value;
-                    Cambio?.Invoke();
-                }
+                this.imagenFondo = new StyleBackground(veConImgFondo.resolvedStyle.backgroundImage);
+                imgVeName = veConImgFondo.name;
+                Cambio?.Invoke();
             }
         }
 
-        public Individuo(string nombre, string apellido, StyleBackground imagenFondo)
+        public Individuo(string nombre, string apellido, StyleBackground imagenFondo,string imgVeName)
         {
             this.nombre = nombre;
             this.apellido = apellido;
             this.imagenFondo = imagenFondo;
+            this.imgVeName = imgVeName;
         }
     }
 }

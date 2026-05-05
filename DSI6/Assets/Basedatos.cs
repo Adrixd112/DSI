@@ -1,52 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
-using Lab5b_namespace;
 using UnityEngine;
+using System.IO;
 using UnityEngine.UIElements;
 
 
-namespace Lab5c_namespace
+namespace Lab6_namespace
 {
     public class Basedatos
     {
         public static List<Individuo> getData()
         {
 
-            List<Individuo> datos = new List<Individuo>();
-            
-            StyleBackground imgDefault = new StyleBackground(Resources.Load<Sprite>("rickRueda"));
+            string ruta = Application.persistentDataPath + "/lista_individuos.json";
 
-            Individuo perico = new Individuo(
-                "Perico",
-                "Palotes",
-                imgDefault
-            );
-            Individuo tornasol = new Individuo(
-                "Tornasol",
-                "Tornasolado",
-                imgDefault
+            Debug.Log(ruta);
+            if (!File.Exists(ruta))
+            {
+                Debug.Log("No se ha encontrado lista_individuos.json");
+                return new List<Individuo>();
+            }
 
-            );
+            string json = File.ReadAllText(ruta);
 
-            Individuo luca = new Individuo(
-                "Luca",
-                "Lucatelli",
-                imgDefault
+            List<Individuo> datos = JsonHelperIndividuo.FromJson<Individuo>(json);
 
-            );
-
-            Individuo ivan = new Individuo(
-                "Ivan",
-                "Ivanovich",
-                imgDefault
-            );            
-
-            datos.Add(perico);
-            datos.Add(tornasol);
-            datos.Add(luca);
-            datos.Add(ivan);
-
-            return datos; 
+            return datos;
         }
     }
 }
