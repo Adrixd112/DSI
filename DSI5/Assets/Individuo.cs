@@ -47,11 +47,10 @@ namespace Lab5b_namespace
             get { return imagenFondo; }
             set
             {
-                if (value != imagenFondo)
-                {
+               
                     imagenFondo = value;
                     Cambio?.Invoke();
-                }
+                
             }
         }
 
