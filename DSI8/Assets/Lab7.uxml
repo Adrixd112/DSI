@@ -1,0 +1,40 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="BarraVida" src="project://database/Assets/BarraVida.uxml?fileID=9197481963319205126&amp;guid=c4af4a61dc11f2748a2a2934317e4228&amp;type=3#BarraVida"/>
+    <Style src="project://database/Assets/Lab7.uss?fileID=7433441132597879392&amp;guid=8da092226b839ad46986d433f4af49e6&amp;type=3#Lab7"/>
+    <ui:VisualElement name="VisualElement" style="flex-grow: 1;">
+        <ui:VisualElement name="Botones" style="flex-grow: 1; height: 15%; max-height: 15%; flex-direction: row;">
+            <ui:VisualElement name="Verde" style="flex-grow: 1; background-color: rgb(148, 255, 59);"/>
+            <ui:VisualElement name="Azul" style="flex-grow: 1; background-color: rgb(95, 133, 255);"/>
+            <ui:VisualElement name="Fucsia" style="flex-grow: 1; background-color: rgb(255, 88, 251);"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="Contenido" style="flex-grow: 1; display: flex;">
+            <ui:VisualElement name="Verde" style="flex-grow: 1; background-color: rgb(148, 255, 59); display: flex;">
+                <ui:Label text="" focusable="true" emoji-fallback-support="false" name="texto" style="-unity-text-align: upper-center; -unity-text-generator: standard; -unity-text-auto-size: none;"/>
+                <ui:VisualElement style="flex-grow: 1; flex-direction: row; flex-wrap: wrap;">
+                    <ui:VisualElement class="caja">
+                        <ui:VisualElement class="item" style="flex-grow: 1;"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="caja">
+                        <ui:VisualElement class="item" style="flex-grow: 1;"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="caja">
+                        <ui:VisualElement class="item" style="flex-grow: 1;"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="caja">
+                        <ui:VisualElement class="item" style="flex-grow: 1;"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="Azul" style="flex-grow: 1; background-color: rgb(95, 133, 255); display: none;">
+                <ui:Label text="Azulito" style="-unity-text-align: upper-center;"/>
+                <ui:Instance template="BarraVida"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="Fucsia" style="flex-grow: 1; background-color: rgb(255, 88, 251); display: none;">
+                <ui:Label text="0xDD11DDFF" style="-unity-text-align: upper-center;"/>
+                <ui:VisualElement style="flex-grow: 1; background-image: resource(&quot;rickRueda&quot;);"/>
+                <ui:Slider label="Slider" value="42" high-value="100"/>
+                <ui:Button text="Button"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

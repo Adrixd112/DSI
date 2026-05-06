@@ -1,0 +1,46 @@
+
+
+
+
+.caja {
+    width: 50%;
+    height: 50%;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    flex-grow: 1;
+}
+
+.item {
+    flex-grow: 1;
+    background-color: rgb(184, 255, 124);
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+}
+
+.item:hover {
+    flex-grow: 1;
+    background-color: rgb(184, 255, 124);
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    rotate: 3deg;
+    scale: 1.1 1.1;
+    translate: 0 0 1px;
+}
