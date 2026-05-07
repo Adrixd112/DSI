@@ -7,31 +7,31 @@ namespace Lab6_namespace
 {
     public static class JsonHelperIndividuo
     {
-        public static List<Individuo> FromJson<Individuo>(string json)
+        public static List<T> FromJson<T>(string json)
         {
-            ListaIndividuo<Individuo> listaIndividuo = JsonUtility.FromJson<ListaIndividuo<Individuo>>(json);
+            ListaItem<T> listaIndividuo = JsonUtility.FromJson<ListaItem<T>>(json);
             return listaIndividuo.Individuos;
         }
 
-        public static string ToJson<Individuo>(List<Individuo> lista)
+        public static string ToJson<T>(List<T> lista)
         {
-            ListaIndividuo<Individuo> listaIndividuo = new ListaIndividuo<Individuo>();
+            ListaItem<T> listaIndividuo = new ListaItem<T>();
             listaIndividuo.Individuos = lista;
             return JsonUtility.ToJson(listaIndividuo);
         }
 
-        public static string ToJson<Individuo>(List<Individuo> lista, bool prettyPrint)
+        public static string ToJson<T>(List<T> lista, bool prettyPrint)
         {
-            ListaIndividuo<Individuo> listaIndividuo = new ListaIndividuo<Individuo>();
+            ListaItem<T> listaIndividuo = new ListaItem<T>();
             listaIndividuo.Individuos = lista;
             return JsonUtility.ToJson(listaIndividuo, prettyPrint);
         }
 
         [Serializable]
 
-        private class ListaIndividuo<Individuo>
+        private class ListaItem<T>
         {
-            public List<Individuo> Individuos;
+            public List<T> Individuos;
         }
     }
    

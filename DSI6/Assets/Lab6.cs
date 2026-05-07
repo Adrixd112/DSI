@@ -214,6 +214,7 @@ namespace Lab6_namespace
         void GuardarInfoEnJson(ClickEvent evt)
         {
             string json = JsonHelperIndividuo.ToJson(individuos, true);
+            Debug.Log(json);
             string ruta = Application.persistentDataPath + "/lista_individuos.json";
             System.IO.File.WriteAllText(ruta, json);
 

@@ -1,0 +1,61 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="InventoryElement" src="project://database/Assets/InventoryElement.uxml?fileID=9197481963319205126&amp;guid=012303fe7798b2d4b9581f243fb0c760&amp;type=3#InventoryElement"/>
+    <Style src="project://database/Assets/estilomierda.uss?fileID=7433441132597879392&amp;guid=d07cf74073becd544a7013fc28b8f9cd&amp;type=3#estilomierda"/>
+    <ui:VisualElement name="header" class="header" style="flex-direction: row;">
+        <ui:VisualElement style="flex-grow: 1; width: 33%;">
+            <ui:Button text="Our Catalogue" name="CatalogueButton"/>
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-grow: 1; width: 33%;">
+            <ui:Button text="Shopping Cart" name="CartButton" parse-escape-sequences="false"/>
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-grow: 1; width: 33%;">
+            <ui:Label text="Your Balance: XXX.XX" style="-unity-text-align: middle-center;"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="body" class="body" style="flex-grow: 1; flex-shrink: 1; flex-direction: row; justify-content: flex-start;">
+        <ui:VisualElement name="CatalogueWindow" style="flex-grow: 1; flex-direction: row;">
+            <ui:VisualElement style="flex-grow: 1; width: 50%; padding-top: 1%; padding-right: 1%; padding-bottom: 1%; padding-left: 1%;">
+                <ui:VisualElement class="simpleBlueBackground body" style="flex-grow: 1; flex-shrink: 1; width: auto; height: 20%; background-color: rgb(134, 238, 187); justify-content: center; padding-top: 0.2%; padding-right: 0.2%; padding-bottom: 0.2%; padding-left: 0.2%; max-height: 45px; min-height: 45px; aspect-ratio: auto; min-width: 100%; max-width: 100%;">
+                    <ui:Label text="Wholesale &amp; Retail Catalogue" parse-escape-sequences="true" style="justify-content: flex-start; align-self: auto; -unity-text-align: middle-center; text-overflow: clip; -unity-font-style: normal; font-size: 19px; -unity-text-generator: advanced; -unity-text-auto-size: best-fit 10px 190px;"/>
+                </ui:VisualElement>
+                <ui:VisualElement name="ShopList" class="body" style="flex-grow: 1; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-left-radius: 12px; border-top-right-radius: 12px; border-bottom-right-radius: 12px; border-bottom-left-radius: 12px; border-bottom-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); max-width: none; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; width: auto; height: auto; padding-top: 13px; padding-right: 13px; padding-bottom: 13px; padding-left: 13px; min-width: auto; flex-shrink: 1; flex-wrap: wrap; align-self: auto; align-items: stretch;">
+                    <ui:Instance template="InventoryElement" name="InventoryElement"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1; width: 50%;">
+                <ui:VisualElement name="BuySellWindow" class="body" style="flex-grow: 1; flex-shrink: 1; padding-top: 13px; padding-right: 13px; padding-bottom: 13px; padding-left: 13px; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px; justify-content: flex-start; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-left-radius: 12px; border-top-right-radius: 12px; border-bottom-right-radius: 12px; border-bottom-left-radius: 12px; width: auto; min-width: auto;">
+                    <ui:Label text="LOOOOG" style="-unity-text-align: middle-center; white-space: nowrap; margin-top: 4px; margin-right: 4px; margin-bottom: 4px; margin-left: 4px; padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px; border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; border-left-width: 3px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); background-color: rgb(202, 144, 152); border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-right-radius: 6px; border-bottom-left-radius: 6px;"/>
+                    <ui:VisualElement style="flex-grow: 0; align-content: flex-start; align-self: stretch; justify-content: flex-start; flex-direction: row; align-items: flex-start; width: auto; height: auto; max-height: none; flex-shrink: 0;">
+                        <ui:VisualElement name="Image" style="flex-grow: 1; right: auto; left: auto; top: 0; min-width: 10px; max-width: 60px; max-height: 60px; width: 60px; height: 60px; align-items: stretch; flex-shrink: 1; justify-content: center; margin-top: 2px; margin-right: 2px; margin-bottom: 2px; margin-left: 2px; background-image: url(&quot;project://database/Assets/Assets/tronco_40x40%201.png?fileID=2800000&amp;guid=928ea041402d3f24f8a2a8d0d3cbea18&amp;type=3#tronco_40x40 1&quot;); -unity-background-scale-mode: scale-and-crop; min-height: 10px; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; background-color: rgb(36, 36, 36); background-size: contain; flex-basis: auto; align-content: flex-start; flex-direction: row;"/>
+                        <ui:VisualElement style="flex-grow: 1; align-self: center; justify-content: flex-start; background-color: rgba(0, 0, 0, 0.51); flex-shrink: 1; align-items: stretch;">
+                            <ui:Label text="Unit price: XX" style="flex-shrink: 1; max-height: 50%; height: auto; align-self: stretch;"/>
+                            <ui:Label text="Bulk buy disscount:  XX%" style="flex-grow: 1; flex-shrink: 1; align-self: stretch; align-items: stretch; justify-content: flex-start; -unity-text-align: upper-left; max-height: 50%; height: 50%;"/>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="normalBuyMenu" style="flex-grow: 0; flex-direction: row; flex-shrink: 1; align-items: flex-start; justify-content: flex-start; align-self: stretch; flex-wrap: nowrap;">
+                        <ui:Button text="Buy 1 unit" name="buy1Button" style="justify-content: flex-start; width: auto; height: 23px; align-self: auto; flex-grow: 1; flex-shrink: 1;"/>
+                        <ui:Button text="Buy 2 units" name="buy2Button" style="justify-content: flex-start; width: auto; height: 23px; flex-grow: 1; flex-shrink: 1;"/>
+                        <ui:Button text="Buy 5 units" name="buy5Button" style="justify-content: flex-start; width: auto; height: 23px; flex-shrink: 1; flex-grow: 1;"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="bulkBuyMenu" style="flex-grow: 0;">
+                        <ui:Button text="Bulk buy (boxes of 25):" name="buy1Button" style="justify-content: flex-start; width: auto; height: 23px; align-self: auto; flex-grow: 0; flex-shrink: 0;"/>
+                        <ui:VisualElement name="nBoxesSlider" style="flex-grow: 0; flex-direction: row; justify-content: flex-start; align-self: stretch; flex-shrink: 0;">
+                            <ui:SliderInt value="42" high-value="50" enabled="true" show-input-field="true" fill="false" low-value="1" page-size="1" direction="Horizontal" style="align-items: stretch; justify-content: flex-start; align-self: stretch; flex-direction: row; height: 34px; width: 60%; max-width: 60%;"/>
+                            <ui:Label text="Boxes" style="justify-content: flex-start; align-self: center;"/>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: row; justify-content: space-between; align-self: flex-end;">
+                        <ui:Label text="Units owned: XXX" style="align-self: center;"/>
+                        <ui:Label text="Packets owned: XXX" style="flex-shrink: 1; flex-grow: 0; align-self: center;"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="footer" class="footer" style="max-height: 10%; min-height: 10px;">
+        <ui:VisualElement style="flex-grow: 1; width: 50%;">
+            <ui:Label text="TheBigShop.shop" name="HeaderLabel" style="-unity-font-style: bold; -unity-text-align: middle-left; white-space: nowrap; flex-shrink: 1; flex-grow: 1; flex-basis: 0%; width: auto; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; justify-content: flex-start;"/>
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-grow: 1; width: 50%;"/>
+    </ui:VisualElement>
+</ui:UXML>

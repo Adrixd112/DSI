@@ -1,0 +1,9 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Lab4.uss?fileID=7433441132597879392&amp;guid=5fa9c990290529b4e8a8dcbb66beecdc&amp;type=3#Lab4" />
+    <ui:VisualElement name="Contenedor" style="flex-grow: 1; flex-wrap: wrap; flex-direction: row; justify-content: flex-start; align-items: stretch; align-content: flex-start; flex-basis: auto;">
+        <ui:VisualElement name="Contenedor" class="caja" style="flex-grow: 1;" />
+        <ui:VisualElement name="Contenedor" class="caja" style="flex-grow: 1;" />
+        <ui:VisualElement name="Contenedor" class="caja" style="flex-grow: 1;" />
+        <ui:VisualElement name="Contenedor" class="caja" style="flex-grow: 1;" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="ShopElement" class="shopListElem">
+        <ui:Button text="LOG" class="shopListElemButton"/>
+        <ui:VisualElement name="Image" class="shopListElemImage" style="min-width: auto; align-content: auto; align-self: stretch;"/>
+    </ui:VisualElement>
+</ui:UXML>
