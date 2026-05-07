@@ -5,6 +5,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using static UnityEngine.InputSystem.Controls.AxisControl;
 using static UnityEditor.Progress;
+using static Unity.VisualScripting.LudiqRootObjectEditor;
 
 
 public class UIScript : MonoBehaviour
@@ -26,9 +27,11 @@ public class UIScript : MonoBehaviour
 
     private void OnEnable()
     {
+        tiendaInfo = BaseDatos.getTiendaInfo();
+        userInfo = BaseDatos.getUserInfo();
         GenerateItems();
-        GenerateTienda();
-        GenerateUser();
+        if(tiendaInfo == null)GenerateTienda();
+        if (userInfo == null) GenerateUser();
 
         VisualTreeAsset invElemTemplate = Resources.Load<VisualTreeAsset>("InventoryElement");
 
@@ -185,7 +188,7 @@ public class UIScript : MonoBehaviour
 
     void BuyButtonCallback(SlotInfo slot, int ammount)
     {
-        if (ammount >= slot.cantidad_U)
+        if (ammount <= slot.cantidad_U)
         {
             slot.cantidad_U -= ammount;
             if(userInvItemSlot == null)
@@ -196,10 +199,11 @@ public class UIScript : MonoBehaviour
             userInvItemSlot.cantidad_U += ammount;
             UpdateItemDescriptionCatalogo();
         }
+        GuardarInfoEnJson();
     }
     void BuyBoxButtonCallback(SlotInfo slot, int ammount)
     {
-        if (ammount >= slot.cantidad_Cajas)
+        if (ammount <= slot.cantidad_Cajas)
         {
             slot.cantidad_Cajas -= ammount;
             if (userInvItemSlot == null)
@@ -210,6 +214,7 @@ public class UIScript : MonoBehaviour
             userInvItemSlot.cantidad_Cajas += ammount;
             UpdateItemDescriptionCatalogo();
         }
+        GuardarInfoEnJson();
     }
     void UpdateItemDescriptionCatalogo()
     {
@@ -257,5 +262,18 @@ public class UIScript : MonoBehaviour
         }
 
         bulkBuySlider.highValue = catalogoSelected.cantidad_Cajas;
+    }
+    void GuardarInfoEnJson()
+    {
+        string json = JsonHelper.ToJson(tiendaInfo, true);
+        Debug.Log(json);
+        string ruta = Application.persistentDataPath + "/tienda.json";
+        System.IO.File.WriteAllText(ruta, json);
+
+        json = JsonHelper.ToJson(userInfo, true);
+        Debug.Log(json);
+        ruta = Application.persistentDataPath + "/user.json";
+        System.IO.File.WriteAllText(ruta, json);
+
     }
 }

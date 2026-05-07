@@ -24,5 +24,22 @@ public class BaseDatos
 
             return datos;
         }
-    
+    public static UserInfo getUserInfo()
+    {
+
+        string ruta = Application.persistentDataPath + "/user.json";
+
+        Debug.Log(ruta);
+        if (!File.Exists(ruta))
+        {
+            Debug.Log("No se ha encontrado user.json");
+            return null;
+        }
+        string json = File.ReadAllText(ruta);
+
+        UserInfo datos = JsonHelper.FromJson<UserInfo>(json);
+
+        return datos;
+    }
+
 }
