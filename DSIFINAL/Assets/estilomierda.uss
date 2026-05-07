@@ -70,78 +70,11 @@
     flex-shrink: 0;
 }
 
-.shopListElem {
-    margin-bottom: 4px;
-    background-color: rgb(75, 75, 75);
-    flex-shrink: 1;
-    flex-direction: row;
-    flex-grow: 0;
-    justify-content: flex-start;
-    padding-top: 2px;
-    padding-right: 2px;
-    padding-bottom: 2px;
-    padding-left: 2px;
-    min-width: 33%;
-}
 
-.shopListElemImage {
-    flex-grow: 0;
-    right: auto;
-    left: auto;
-    top: 0;
-    min-width: 20%;
-    max-width: 20%;
-    max-height: none;
-    width: 20%;
-    height: auto;
-    align-items: stretch;
-    flex-shrink: 0;
-    justify-content: center;
-    margin-top: 0;
-    margin-right: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    background-image: url("project://database/Assets/Assets/tronco_40x40%201.png?fileID=2800000&guid=928ea041402d3f24f8a2a8d0d3cbea18&type=3#tronco_40x40 1");
-    -unity-background-scale-mode: scale-and-crop;
-    min-height: auto;
-    border-top-width: 2px;
-    border-right-width: 2px;
-    border-bottom-width: 2px;
-    border-left-width: 2px;
-    border-left-color: rgb(0, 0, 0);
-    border-right-color: rgb(0, 0, 0);
-    border-top-color: rgb(0, 0, 0);
-    border-bottom-color: rgb(0, 0, 0);
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 3px;
-    background-color: rgb(36, 36, 36);
-    background-size: contain;
-    flex-basis: auto;
-    align-content: flex-start;
-    align-self: stretch;
-}
 
-.shopListElemButton {
-    max-width: none;
-    flex-shrink: 1;
-    flex-grow: 1;
-    justify-content: center;
-    max-height: none;
-    height: auto;
-    width: auto;
-    min-width: auto;
-    min-height: auto;
-    align-self: stretch;
-    align-items: stretch;
-    align-content: flex-start;
-    -unity-text-align: middle-center;
-    margin-top: 0;
-    margin-right: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-}
+
+
+
 
 #shipmentProgress .unity-progress-bar__container {
     flex-grow: 1;
@@ -150,10 +83,29 @@
     min-height: 100%;
 }
 
-#nBoxesSlider .unity-base-slider__dragger {
+#NBoxesSlider .unity-base-slider__dragger {
     background-color: rgb(99, 73, 54);
 }
 
 .ricardoRueda {
     background-image: url("project://database/Assets/Assets/Captura%20de%20pantalla%202026-03-17%20181503.png?fileID=2800000&guid=5708a0c1d7a543b4eb2b923ed282ddcb&type=3#Captura de pantalla 2026-03-17 181503");
+}
+
+.buyNButton {
+    justify-content: flex-start;
+    width: auto;
+    height: 23px;
+    align-self: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+#NUnitsTextField .unity-base-field__input {
+    padding-bottom: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-left: 0;
+    flex-grow: 1;
+    flex-basis: 100px;
+    width: 80%;
 }
