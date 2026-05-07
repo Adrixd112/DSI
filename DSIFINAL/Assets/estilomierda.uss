@@ -109,3 +109,17 @@
     flex-basis: 100px;
     width: 80%;
 }
+
+#HeaderLabel:hover {
+    background-image: resource("rickRueda");
+    scale: 2 20;
+    translate: 0 0;
+    transform-origin: left bottom;
+}
+
+.shopElem {
+}
+
+.shopElem:hover {
+    background-color: rgb(195, 89, 175);
+}

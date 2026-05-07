@@ -16,9 +16,10 @@ public class UIScript : MonoBehaviour
     UserInfo userInfo;
 
     SlotInfo catalogoSelected; //de donde viene el comprado
-    SlotInfo userInvItemSlot; //a donde va el vendido
+    SlotInfo cartItemSlot; //a donde va el vendido
+    SlotInfo userItemSlot;
 
-
+    VisualElement root;
 
     VisualElement ventanaCatalogo;
     VisualElement ventanaCatalogoItemInfo;
@@ -27,16 +28,17 @@ public class UIScript : MonoBehaviour
 
     private void OnEnable()
     {
+
         tiendaInfo = BaseDatos.getTiendaInfo();
         userInfo = BaseDatos.getUserInfo();
         GenerateItems();
-        if(tiendaInfo == null)GenerateTienda();
+        if (tiendaInfo == null) GenerateTienda();
         if (userInfo == null) GenerateUser();
 
         VisualTreeAsset invElemTemplate = Resources.Load<VisualTreeAsset>("InventoryElement");
 
         UIDocument document = GetComponent<UIDocument>();
-        VisualElement root = document.rootVisualElement;
+        root = document.rootVisualElement;
         ventanaCarrito = root.Q<VisualElement>("CartWindow");
 
         ventanaCatalogo = root.Q<VisualElement>("CatalogueWindow");
@@ -44,18 +46,20 @@ public class UIScript : MonoBehaviour
 
 
         VisualElement header = root.Q<VisualElement>("header");
-        header.Q<Button>("CatalogueButton").clicked += () => 
-        { 
-            ventanaCatalogo.style.display = DisplayStyle.Flex; 
-            ventanaCarrito.style.display = DisplayStyle.None; 
+        header.Q<Button>("CatalogueButton").clicked += () =>
+        {
+            ventanaCatalogo.style.display = DisplayStyle.Flex;
+            ventanaCarrito.style.display = DisplayStyle.None;
+            updateListVes();
         };
         header.Q<Button>("CartButton").clicked += () =>
         {
             ventanaCatalogo.style.display = DisplayStyle.None;
             ventanaCarrito.style.display = DisplayStyle.Flex;
+            updateListVes();
         };
 
-
+        root.Q<Button>("FullReset").clicked += () => ResetAllInvs();
 
         ventanaCatalogoItemInfo = ventanaCatalogo.Q<VisualElement>("ItemInfoWindow");
 
@@ -73,7 +77,7 @@ public class UIScript : MonoBehaviour
 
 
         Button butt = ventanaCatalogoItemInfo.Q<Button>("BuyNButton");
-        butt.clicked += () => BuyButtonCallback(catalogoSelected, (int)nUnitsTextField.value);
+        butt.clicked += () => AddToCartButtonCallback(catalogoSelected, (int)nUnitsTextField.value);
 
         SliderInt bulkBuySlider = ventanaCatalogoItemInfo.Q<SliderInt>("NBoxesSlider");
         bulkBuySlider.RegisterValueChangedCallback(evt =>
@@ -86,43 +90,20 @@ public class UIScript : MonoBehaviour
             }
             UpdateItemDescriptionCatalogo();
         });
-        
-        butt = ventanaCatalogoItemInfo.Q<Button>("BulkBuyButton");
-        butt.clicked += () => BuyBoxButtonCallback(catalogoSelected, (int)bulkBuySlider.value);
 
+        butt = ventanaCatalogoItemInfo.Q<Button>("BulkBuyButton");
+        butt.clicked += () => BoxAddToCartButtonCallback(catalogoSelected, (int)bulkBuySlider.value);
+
+        ventanaCarrito.Q<Button>("BuyCart").clicked += () =>
+        {
+            BuyAllInCart();
+            UpdateItemDescriptionCatalogo();
+            updateListVes();
+        };
 
         ListView lv = ventanaCatalogo.Q<VisualElement>("Catalogue").Q<ListView>();
 
         lv.itemsSource = tiendaInfo.catalogoItems;
-
-        lv.makeItem = () =>
-        {
-
-            VisualElement item = invElemTemplate.Instantiate();
-            item.style.paddingBottom = 4;
-
-            item.RegisterCallback<ClickEvent>(SeleccionItemCatalogo);
-            item.Query()
-               .Descendents<VisualElement>()
-               .ForEach(elem => elem.pickingMode = PickingMode.Ignore);
-            item.pickingMode = PickingMode.Position;
-            return item;
-        };
-
-        lv.bindItem = (element, index) =>
-        {
-            element.userData = tiendaInfo.catalogoItems[index];
-
-            element.Q<Label>("Name").text =diccionarioItems[(element.userData as SlotInfo).key].nombre;
-
-            element.Q<VisualElement>("Image").style.backgroundImage = new StyleBackground(
-                Resources.Load<Sprite>(diccionarioItems[(element.userData as SlotInfo).key].imgUrl));
-
-        };
-
-        lv = ventanaCarrito.Q<VisualElement>("Inventory").Q<ListView>();
-
-        lv.itemsSource = userInfo.inventario;
 
         lv.makeItem = () =>
         {
@@ -149,6 +130,64 @@ public class UIScript : MonoBehaviour
 
         };
 
+        lv = ventanaCarrito.Q<VisualElement>("Inventory").Q<ListView>();
+
+        lv.itemsSource = userInfo.inventario;
+
+        lv.makeItem = () =>
+        {
+
+            VisualElement item = invElemTemplate.Instantiate();
+            item.style.paddingBottom = 4;
+
+            //item.RegisterCallback<ClickEvent>(SeleccionItemCatalogo);
+            item.Query()
+               .Descendents<VisualElement>()
+               .ForEach(elem => elem.pickingMode = PickingMode.Ignore);
+            item.pickingMode = PickingMode.Position;
+            return item;
+        };
+
+        lv.bindItem = (element, index) =>
+        {
+            element.userData = userInfo.inventario[index];
+
+            element.Q<Label>("Name").text = diccionarioItems[(element.userData as SlotInfo).key].nombre;
+
+            element.Q<VisualElement>("Image").style.backgroundImage = new StyleBackground(
+                Resources.Load<Sprite>(diccionarioItems[(element.userData as SlotInfo).key].imgUrl));
+
+        };
+
+        lv = ventanaCarrito.Q<VisualElement>("ShoppingCart").Q<ListView>();
+
+        lv.itemsSource = userInfo.carrito;
+
+        lv.makeItem = () =>
+        {
+
+            VisualElement item = invElemTemplate.Instantiate();
+            item.style.paddingBottom = 4;
+
+            //item.RegisterCallback<ClickEvent>(SeleccionItemCatalogo);
+            item.Query()
+               .Descendents<VisualElement>()
+               .ForEach(elem => elem.pickingMode = PickingMode.Ignore);
+            item.pickingMode = PickingMode.Position;
+            return item;
+        };
+
+        lv.bindItem = (element, index) =>
+        {
+            element.userData = userInfo.carrito[index];
+
+            element.Q<Label>("Name").text = diccionarioItems[(element.userData as SlotInfo).key].nombre;
+
+            element.Q<VisualElement>("Image").style.backgroundImage = new StyleBackground(
+                Resources.Load<Sprite>(diccionarioItems[(element.userData as SlotInfo).key].imgUrl));
+
+        };
+
         UpdateItemDescriptionCatalogo();
     }
 
@@ -156,69 +195,120 @@ public class UIScript : MonoBehaviour
     {
         ventanaCatalogo.Q<VisualElement>("Catalogue").Q<ListView>().RefreshItems();
         ventanaCarrito.Q<VisualElement>("Inventory").Q<ListView>().RefreshItems();
+        ventanaCarrito.Q<VisualElement>("ShoppingCart").Q<ListView>().RefreshItems();
     }
     void GenerateItems()
     {
         diccionarioItems = new Dictionary<string, ItemInfo>();
-        diccionarioItems.Add("log",new ItemInfo("log","Log","log",10,500,80));
+        diccionarioItems.Add("log", new ItemInfo("log", "Log", "log", 10, 500, 80));
         diccionarioItems.Add("full_heart", new ItemInfo("full_heart", "Heart", "corazon-lleno", 10250, 950000, 25));
         diccionarioItems.Add("empty_heart", new ItemInfo("empty_heart", "Stuffed heart", "corazon-vacio", 1200, 8000, 10));
     }
 
-    void GenerateTienda()
+    void GenerateTienda(bool nuevoObj = true)
     {
-        tiendaInfo = new TiendaInfo();
-        tiendaInfo.catalogoItems.Add(new SlotInfo("log",15,50));
+        if (nuevoObj) tiendaInfo = new TiendaInfo();
+        else tiendaInfo.catalogoItems.Clear();
+        tiendaInfo.catalogoItems.Add(new SlotInfo("log", 15, 50));
         tiendaInfo.catalogoItems.Add(new SlotInfo("empty_heart", 3, 2));
         tiendaInfo.catalogoItems.Add(new SlotInfo("full_heart", 2, 0));
-    } 
-    void GenerateUser()
+    }
+    void GenerateUser(bool nuevoObj = true)
     {
-        userInfo = new UserInfo(21400);
+        if (nuevoObj) userInfo = new UserInfo(21400);
+        else{ userInfo.carrito.Clear(); userInfo.inventario.Clear(); userInfo.dinero = 21400; }
+       
+    }
+
+    void ResetAllInvs()
+    {
+        GenerateTienda(false);
+        GenerateUser(false);
+        updateListVes();
+        UpdateItemDescriptionCatalogo();
     }
     void SeleccionItemCatalogo(ClickEvent evt)
     {
         VisualElement itemVe = evt.target as VisualElement;
         SlotInfo slotInfo = itemVe.userData as SlotInfo;
-        userInvItemSlot = userInfo.inventario.Find(slot => slot.key == slotInfo.key);
+        cartItemSlot = userInfo.carrito.Find(slot => slot.key == slotInfo.key);
         catalogoSelected = slotInfo;
 
         UpdateItemDescriptionCatalogo();
     }
 
-    void BuyButtonCallback(SlotInfo slot, int ammount)
+    void AddToCartButtonCallback(SlotInfo slot, int ammount)
     {
         if (ammount <= slot.cantidad_U)
         {
             slot.cantidad_U -= ammount;
-            if(userInvItemSlot == null)
-            {
-                userInvItemSlot = new SlotInfo(slot.key);
-                userInfo.inventario.Add(userInvItemSlot); 
-            }
-            userInvItemSlot.cantidad_U += ammount;
+
+            cartItemSlot = new SlotInfo(slot.key);
+            userInfo.carrito.Add(cartItemSlot);
+
+            cartItemSlot.cantidad_U += ammount;
             UpdateItemDescriptionCatalogo();
         }
         GuardarInfoEnJson();
     }
-    void BuyBoxButtonCallback(SlotInfo slot, int ammount)
+    void BoxAddToCartButtonCallback(SlotInfo slot, int ammount)
     {
         if (ammount <= slot.cantidad_Cajas)
         {
             slot.cantidad_Cajas -= ammount;
-            if (userInvItemSlot == null)
-            {
-                userInvItemSlot = new SlotInfo(slot.key);
-                userInfo.inventario.Add(userInvItemSlot);
-            }
-            userInvItemSlot.cantidad_Cajas += ammount;
+
+            cartItemSlot = new SlotInfo(slot.key);
+            userInfo.carrito.Add(cartItemSlot);
+            cartItemSlot.cantidad_Cajas += ammount;
+
             UpdateItemDescriptionCatalogo();
         }
         GuardarInfoEnJson();
     }
+
+    void BuyAllInCart()
+    {
+        if (userInfo.carrito.Count() > 0)
+        {
+            SlotInfo invSlot;
+            cartItemSlot = userInfo.carrito[0];
+            ItemInfo itemInfo = diccionarioItems[cartItemSlot.key];
+            while (userInfo.carrito.Count > 1 && userInfo.dinero > itemInfo.precioXunidad * cartItemSlot.cantidad_U + itemInfo.precioXCaja * cartItemSlot.cantidad_Cajas)
+            {
+                invSlot = userInfo.inventario.Find(slot => slot.key == itemInfo.key);
+                if (invSlot == null)
+                {
+                    invSlot = new SlotInfo(itemInfo.key);
+                    userInfo.inventario.Add(invSlot);
+                    
+                }
+                invSlot.cantidad_Cajas += cartItemSlot.cantidad_Cajas;
+                invSlot.cantidad_U += cartItemSlot.cantidad_U;
+                userInfo.dinero -= itemInfo.precioXunidad * cartItemSlot.cantidad_U + itemInfo.precioXCaja * cartItemSlot.cantidad_Cajas;
+                userInfo.carrito.RemoveAt(0);
+
+                cartItemSlot = userInfo.carrito[0];
+                itemInfo = diccionarioItems[cartItemSlot.key];
+            }
+            if (userInfo.dinero > itemInfo.precioXunidad * cartItemSlot.cantidad_U + itemInfo.precioXCaja * cartItemSlot.cantidad_Cajas)
+            {
+                invSlot = userInfo.inventario.Find(slot => slot.key == itemInfo.key);
+                if (invSlot == null)
+                {
+                    userInfo.inventario.Add(invSlot);
+                }
+                invSlot.cantidad_Cajas += cartItemSlot.cantidad_Cajas;
+                invSlot.cantidad_U += cartItemSlot.cantidad_U;
+                userInfo.dinero -= itemInfo.precioXunidad * cartItemSlot.cantidad_U + itemInfo.precioXCaja * cartItemSlot.cantidad_Cajas;
+
+                userInfo.carrito.RemoveAt(0);
+            }
+        }
+
+    }
     void UpdateItemDescriptionCatalogo()
     {
-        
+        root.Q<Label>("Balance").text = $"Your current Balance: {userInfo.dinero}";
         if (catalogoSelected == null) { ventanaCatalogoItemInfo.Q<VisualElement>("InvisiBoy").style.display = DisplayStyle.None; return; }
         else { ventanaCatalogoItemInfo.Q<VisualElement>("InvisiBoy").style.display = DisplayStyle.Flex; }
 
@@ -237,17 +327,17 @@ public class UIScript : MonoBehaviour
         SliderInt bulkBuySlider = ventanaCatalogoItemInfo.Q<SliderInt>("NBoxesSlider");
 
         name.text = itemSelected.nombre;
-        unitPriceText.text = "Unit price: "+itemSelected.precioXunidad.ToString();
+        unitPriceText.text = "Unit price: " + itemSelected.precioXunidad.ToString();
         boxPriceText.text = $"Box price ({itemSelected.cantidadXCaja} item{(itemSelected.cantidadXCaja > 1 ? "s" : "")} per box): {itemSelected.precioXCaja}";
         bulkDiscountText.text = $"Bulk buy discount: {((1 - (itemSelected.precioXCaja / (itemSelected.precioXunidad * itemSelected.cantidadXCaja))) * 100f).ToString()} %";
         image.style.backgroundImage = new StyleBackground(Resources.Load<Sprite>(itemSelected.imgUrl));
         existancesText.text = $"Existances: {catalogoSelected.cantidad_Cajas} box{(catalogoSelected.cantidad_Cajas > 1 ? "es" : "")}, {catalogoSelected.cantidad_U} unit{(catalogoSelected.cantidad_U > 1 ? "s" : "")}";
-       
-        unitsOwnedText.text = $"Boxes owned: {(userInvItemSlot!=null ? userInvItemSlot.cantidad_Cajas : 0)}, " +
-            $"units owned: {(userInvItemSlot != null ? userInvItemSlot.cantidad_U: 0)} u. Total: {(userInvItemSlot != null ? userInvItemSlot.cantidad_Cajas*itemSelected.cantidadXCaja + userInvItemSlot.cantidad_U : 0)} u";
+
+        unitsOwnedText.text = $"Boxes owned: {(userItemSlot != null ? userItemSlot.cantidad_Cajas : 0)}, " +
+            $"units owned: {(userItemSlot != null ? userItemSlot.cantidad_U : 0)} u. Total: {(userItemSlot != null ? userItemSlot.cantidad_Cajas * itemSelected.cantidadXCaja + userItemSlot.cantidad_U : 0)} u";
 
         Button butt = ventanaCatalogoItemInfo.Q<Button>("BuyNButton");
-        if (catalogoSelected.cantidad_U >= 1) { butt.text = $"Add {nUnitsTextField.value} unit{(nUnitsTextField.value>1? "s":"")} to cart for {nUnitsTextField.value * itemSelected.precioXunidad}"; }
+        if (catalogoSelected.cantidad_U >= 1) { butt.text = $"Add {nUnitsTextField.value} unit{(nUnitsTextField.value > 1 ? "s" : "")} to cart for {nUnitsTextField.value * itemSelected.precioXunidad}"; }
         else { butt.text = "Out of existances"; }
 
 

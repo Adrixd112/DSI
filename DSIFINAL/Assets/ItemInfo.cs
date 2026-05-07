@@ -58,7 +58,7 @@ public class UserInfo
 {
     public List<SlotInfo> inventario;
     public List<SlotInfo> carrito;
-    float dinero;
+    public float dinero;
     public UserInfo(float dinero)
     {
         inventario = new List<SlotInfo>();
