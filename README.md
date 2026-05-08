@@ -1,7 +1,7 @@
 Hecho usando Unity 6000.4.4f1
 
 Estoy usando la última versión de unity ya que es la más nueva y hay funciones que Unity va dando de baja en favor de hacer las cosas de una nueva manera.
-
+El último commit del lab final lo hice como a la 1:30 am. Hay un commit que hice como 2 min antes de las fecha de entrega, las 00:00. Puedes corregir ese si no aceptas lo hecho más allá de las 00:00.
 Cambios respecto a la práctica en la versión anterior:
 
 Lab4: 
